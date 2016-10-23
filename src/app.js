@@ -31,10 +31,6 @@ app.use(compress())
   .configure(rest())
   .configure(socketio())
   .configure(services)
-  .configure(middleware)
-  .configure(authentication({
-    token: { secret: 'W/0YgfQ+bqKJ5Xxu5DNasj7vrd3eEYWXZqIQ7MLtlOboV7SFpGSj0vROYGPmFyXY9URSynvkZLukCo12sBCPAw==' },
-    local: { usernameField: 'username' }
-  }));
+  .configure(middleware);
 
 module.exports = app;
