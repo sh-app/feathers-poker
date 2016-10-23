@@ -13,6 +13,8 @@ const bodyParser = require('body-parser');
 const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
+const authentication = require('feathers-authentication');
+
 
 const app = feathers();
 
@@ -29,6 +31,10 @@ app.use(compress())
   .configure(rest())
   .configure(socketio())
   .configure(services)
-  .configure(middleware);
+  .configure(middleware)
+  .configure(authentication({
+    token: { secret: 'W/0YgfQ+bqKJ5Xxu5DNasj7vrd3eEYWXZqIQ7MLtlOboV7SFpGSj0vROYGPmFyXY9URSynvkZLukCo12sBCPAw==' },
+    local: { usernameField: 'username' }
+  }));
 
 module.exports = app;
